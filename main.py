@@ -29,9 +29,10 @@ model = XGBClassifier(objective='binary:logistic')
 model.fit(x_train, y_train)
 
 y_pred = model.predict(x_test)
+y_pred_proba = model.predict_proba(x_test)[:,1]
 
 output = x_test
-output['Exited'] = y_pred
+output['Exited'] = y_pred_proba
 
 columns_to_keep = ['id', 'Exited']
 
@@ -43,4 +44,4 @@ output.drop(columns=columns_to_drop, inplace=True)
 
 output.head(5)
 
-output.to_csv('/output/submission.csv', index=False)
+output.to_csv('output/submission.csv', index=False)
