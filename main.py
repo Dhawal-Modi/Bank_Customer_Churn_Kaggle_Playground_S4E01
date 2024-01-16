@@ -38,10 +38,8 @@ columns_to_keep = ['id', 'Exited']
 
 # Find columns to drop
 columns_to_drop = [col for col in output.columns if col not in columns_to_keep]
-
 # Drop the columns
 output.drop(columns=columns_to_drop, inplace=True)
-
 output.head(5)
 
 output.to_csv('output/submission.csv', index=False)
